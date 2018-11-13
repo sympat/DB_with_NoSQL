@@ -33,7 +33,10 @@ while True:
 			code += ch
 		elif code == ';':
 			code += ch
-			Parser.parse(code)
+			try:
+				Parser.parse(code)
+			except ValueError as err:
+				print(err.args)
 			code = ""
 		else:
 			code += ch 
