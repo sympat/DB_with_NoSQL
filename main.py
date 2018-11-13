@@ -1,16 +1,18 @@
-import scanner
+import _scanner
 import token
-import parser
+import _parser
 
+print("\n\n")
 print("--------------------------------------")
 print("| Welcome to DB Stimulation Program! |")
 print("--------------------------------------")
-print("\n\n\n\n")
+print("\n\n")
 print("Enter SQL Statements:")
-Parser = parser.parser()
+Parser = _parser.parser()
 code = ""
 single_quote_flag = False
 double_quote_flag = False
+result = None
 while True:
 
 	input_string = input(">> ")
@@ -31,10 +33,12 @@ while True:
 		elif ch == '"':
 			double_quote_flag = True
 			code += ch
-		elif code == ';':
+		elif ch == ';':
 			code += ch
 			try:
-				Parser.parse(code)
+				result = Parser.parse(code)
+				for x in result:
+					print(x)
 			except ValueError as err:
 				print(err.args)
 			code = ""

@@ -6,7 +6,7 @@ class token:
 		self.content = content
 
 	def __str__(self):
-		return "Token : {}, Kind : {}".format(self.content, self.kind)
+		return "Token : {}\t\t, Kind : {}".format(self.content, self.kind)
 
 (ID			, 		# identifier
 BITOR		,		# |
