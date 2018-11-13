@@ -51,6 +51,30 @@ class scanner:
 		if self.cur_char == "-":
 			self.push_char()
 			return token.MINUS
+		if self.cur_char == "*":
+			self.push_char()
+			return token.TIMES
+		if self.cur_char == "/":
+			self.push_char()
+			return token.DIV
+		if self.cur_char == "%":
+			self.push_char()
+			return token.MOD
+		if self.cur_char == "&":
+			self.push_char()
+			return token.BITAND
+		if self.cur_char == "|":
+			self.push_char()
+			return token.BITOR
+		if self.cur_char == "^":
+			self.push_char()
+			return token.BITXOR
+		if self.cur_char == ",":
+			self.push_char()
+			return token.COMMA
+		if self.cur_char == ";":
+			self.push_char()
+			return token.SEMICOLON
 		if self.cur_char == ">":
 			self.push_char()
 			if self.cur_char == "=":
@@ -62,13 +86,13 @@ class scanner:
 			if self.cur_char == "=":
 				self.push_char()
 				return token.LESSEQ
+			if self.cur_char == ">":
+				self.push_char()
+				return token.NOTEQ
 			return token.LESS
 		if self.cur_char == "=":
 			self.push_char()
-			if self.cur_char == "=":
-				self.push_char()
-				return token.EQ
-			return token.ASSIGN
+			return token.EQ
 		if self.cur_char == "{":
 			self.push_char()
 			return token.LEFTBRACE
@@ -81,6 +105,12 @@ class scanner:
 		if self.cur_char == ")":
 			self.push_char()
 			return token.RIGHTPAREN
+		if self.cur_char == "[":
+			self.push_char()
+			return token.LEFTBRACKET
+		if self.cur_char == "]":
+			self.push_char()
+			return token.RIGHTBRACKET
 		if isDigit(self.cur_char):
 			while isDigit(self.cur_char):
 				self.push_char()
@@ -93,7 +123,8 @@ class scanner:
 		if isAlpha(self.cur_char):
 			while isDigit(self.cur_char) or isAlpha(self.cur_char):
 				self.push_char()
-			if cur_token in token.keywords:
-				
+			if self.cur_token in token.keywords:
+				return token.keywords[self.cur_token]
+			return token.ID
 		
 		

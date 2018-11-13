@@ -6,9 +6,9 @@ class token:
 		self.content = content
 
 ID			, 		# identifier
-OR			,		# |
-AND			,		# &
-XOR			,		# ^
+BITOR		,		# |
+BITAND		,		# &
+BITXOR		,		# ^
 EQ			,		# =
 NOTEQ		,		# <>
 LESSEQ		,		# <=
