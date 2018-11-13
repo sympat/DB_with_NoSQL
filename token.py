@@ -5,7 +5,10 @@ class token:
 		self.kind = kind
 		self.content = content
 
-ID			, 		# identifier
+	def __str__(self):
+		return "Token : {}, Kind : {}".format(self.content, self.kind)
+
+(ID			, 		# identifier
 BITOR		,		# |
 BITAND		,		# &
 BITXOR		,		# ^
@@ -17,7 +20,7 @@ GREATER		,		# >
 GREATEREQ	,		# >=
 PLUS		,		# +
 MINUS		,		# -
-TIMES		,		# *
+ASTER		,		# *
 DIV			,		# /
 MOD			,		# %
 INTLITERAL	,
@@ -45,6 +48,13 @@ SHOW		,
 UPDATE		,
 WHERE		,
 
+# data types:
+CHAR		,
+VARCHAR		,
+INT 		,
+FLOAT 		,
+DECIMAL		,
+
 # punctuation:
 LEFTBRACE 	,	# {
 RIGHTBRACE	,	# }
@@ -57,7 +67,7 @@ SEMICOLON	,	# ;
 
 # special tokens:
 ERROR		,
-EOF			= range(47)   # end-of-file
+EOF)		= range(52)   # end-of-file
 
 keywords = {"ALL" : ALL,
 			"AND" : AND,
@@ -77,4 +87,9 @@ keywords = {"ALL" : ALL,
 			"SELECT" : SELECT,
 			"SHOW" : SHOW,
 			"UPDATE" : UPDATE,
-			"WHERE" : WHERE}
+			"WHERE" : WHERE,
+			"CHAR" : CHAR,
+			"VARCHAR" : VARCHAR,
+			"INT" : INT,
+			"FLOAT" : FLOAT,
+			"DECIMAL" : DECIMAL}

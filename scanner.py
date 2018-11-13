@@ -6,7 +6,7 @@ def isDigit(x):
 	return '0' <= x <= '9'
 
 def isAlpha(x):
-	return ('a' <= x <= 'z') || ('A' <= x <= 'Z')
+	return ('a' <= x <= 'z') or ('A' <= x <= 'Z') or x == '_'
 
 
 class scanner:
@@ -15,7 +15,8 @@ class scanner:
 	cur_char = " "
 	cur_kind = None
 	def __init__(self):
-		
+		return
+
 	def set_source(self, source):
 		self.source = source
 		self.get_next_char()
@@ -27,7 +28,7 @@ class scanner:
 		self.source = self.source[1:]
 
 	def push_char(self):
-		self.cur_token.append(self.cur_char)
+		self.cur_token += self.cur_char
 		self.get_next_char()
 
 	def send_cur_token(self):
@@ -39,7 +40,7 @@ class scanner:
 		while self.cur_char in space_char :
 			self.get_next_char()
 		self.cur_kind = self.scan()
-		self.send_cur_token()
+		return self.send_cur_token()
 
 	def scan(self):
 		if self.cur_char == "$":
@@ -53,7 +54,7 @@ class scanner:
 			return token.MINUS
 		if self.cur_char == "*":
 			self.push_char()
-			return token.TIMES
+			return token.ASTER
 		if self.cur_char == "/":
 			self.push_char()
 			return token.DIV
@@ -123,8 +124,18 @@ class scanner:
 		if isAlpha(self.cur_char):
 			while isDigit(self.cur_char) or isAlpha(self.cur_char):
 				self.push_char()
-			if self.cur_token in token.keywords:
-				return token.keywords[self.cur_token]
+			if self.cur_token.upper() in token.keywords:
+				return token.keywords[self.cur_token.upper()]
 			return token.ID
-		
+		if self.cur_char == '"':
+			self.push_char()
+			while self.cur_char != '"':
+				if self.cur_char == "$":
+					cur_token = "Not Terminated String"
+					return token.ERROR
+				self.push_char()
+			return token.STRINGLITERAL
+
+		self.cur_token = "Unexpected Token" + " " + self.cur_char
+		return token.ERROR
 		
