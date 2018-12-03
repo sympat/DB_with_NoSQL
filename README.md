@@ -24,7 +24,22 @@ Select
 > **SELECT** ( __"*"__ | Attribute-name ( **","** Attribute-name )* ) **FROM** Table-name ( **Where** Simple-condition )? **";"**
 
 Update
-> **UPDATE** Table-name **SET** attribute_name = Attribute-value ( **WHERE** Simple-condition )? **";"** 
+> **UPDATE** Table-name **SET** Attribute-name = Attribute-value ( **WHERE** Simple-condition )? **";"** 
 
 Delete
 > **DELETE FROM** Table-name ( **WHERE** Simple-condition )? **";"**
+
+Table-name
+> 
+
+Data-type
+> **INT | CHAR**
+
+Attribute-name
+>
+
+Attribute-value
+>
+
+Simple-condition
+>
