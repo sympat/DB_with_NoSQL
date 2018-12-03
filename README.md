@@ -6,26 +6,25 @@
 In hard-coded main.py, the parser will automatically parse your code.
 When a parser calls parse method, it will return a list that have separated tokens.
 
-## Command
+## Command EBNF
 
-commands are case-insensitive.
+Command
+> Show | Create | Insert | Select | Update | Delete
 
-<table_name>
-
-Show tables
-> SHOW TABLES;
+Show
+> **SHOW TABLES ";"**
 
 Create
-> CREATE TABLE <table_name> (<data_type> <attribute_name>, <data_type> <attribute_name>, ...);
+> **CREATE TABLE** Table-name **"("** Data-type Attribute-name ( **","** Data-type Attribute-name )* **")" ";"**
 
 Insert
-> INSERT INTO <table_name> VALUES (<attribute_value>, <attribute_value>, ..);
+> **INSERT INTO** Table-name **VALUES "("** Attribute-value ( **","** Attribute-value )* **")" ";"**
 
 Select
-> 
+> **SELECT** ( __"*"__ | Attribute-name ( **","** Attribute-name )* ) **FROM** Table-name ( **Where** Simple-condition )? **";"**
 
 Update
-> UPDATE <table_name> SET <attribute_name> = <attribute_value>, WHERE <simple_condition>;
+> **UPDATE** Table-name **SET** attribute_name = Attribute-value ( **WHERE** Simple-condition )? **";"** 
 
 Delete
-> DELETE FROM <table_name> WHERE <simple_condition>;
+> **DELETE FROM** Table-name ( **WHERE** Simple-condition )? **";"**
