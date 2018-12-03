@@ -8,6 +8,7 @@ print("| Welcome to DB Stimulation Program! |")
 print("--------------------------------------")
 print("\n\n")
 print("Enter SQL Statements:")
+print("test~~~~")
 Parser = _parser.parser()
 code = ""
 single_quote_flag = False
